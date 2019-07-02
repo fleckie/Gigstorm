@@ -31,17 +31,11 @@ function goSearchBand() {
 }
 
 function goSearchPub() {
-  if(document.getElementById("pubInput").value != ""){
-    if (typeof Storage !== "undefined") {
-      localStorage.setItem("pub", document.getElementById("pubInput").value);
-      window.location.href="../pages/pub_search.html";
-    } else {
-      alert("Storage not activated");
-    }
+  pubInput = document.getElementById("pubInput").value;
+  if(pubInput != ""){
+      document.cookie="pub=" + pubInput;
+      window.location.href="../pages/pub.html";
   }
-    else {
-    
-    }
 }
 
 var inputBand = document.getElementById("bandInput");

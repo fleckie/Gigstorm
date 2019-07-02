@@ -1,7 +1,7 @@
 window.onload = loadContent();
 
 function loadContent(){
-  pubName = localStorage.getItem("pub");
+  pubName = getCookie("pub");
   var urlPubId = "http://localhost:8081/php/lastFmApi.php?searchterm=" + pubName + "&method=7&id=0";
 
   fetch(urlPubId)
@@ -68,7 +68,6 @@ function loadContent(){
       el.style.animation = "appear 1s ease-in both";
     });
 
-
     //tag1 = data.response.venue.categories[0].name;
     //tag2 = data.response.venue.categories[1].name;
     //tags = tag1 + " // " + tag2;
@@ -79,8 +78,6 @@ function loadContent(){
     console.log("Request failed", error)
   })
 }
-
-
 
 function createEventTable(events){
   var eventsArray = events.map( event =>{
@@ -113,8 +110,6 @@ function generateTable(table, data) {
   }
 }
 
-
-
 // album swiper for top albums
 $.getScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js', function()
 {
@@ -142,4 +137,18 @@ $.getScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.j
   });
 });
 
-
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}

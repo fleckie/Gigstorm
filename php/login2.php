@@ -17,10 +17,10 @@ if($loggedIn){
     session_start();
     $_SESSION["username"] = $_POST['uname'];
     $_SESSION["bandname"] = $_POST['bname'];
-    setcookie("pub", $_POST['uname'], time() + (86400 * 30), "/");
+    setcookie("pub", $_POST['uname'], time() + (86400 * 30), "/pages/");
     echo "
     <script>
-    window.location.href='/pages/pub_profil.html';
+    window.location.href='/pages/pub.html';
     </script>
     ";
  }else{

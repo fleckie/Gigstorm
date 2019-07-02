@@ -1,7 +1,6 @@
 window.onload = loadContent();
 
 function loadContent(){
-  
   bandname = getCookie("band");
   var urlBandId = "http://localhost:8081/php/lastFmApi.php?searchterm=" + bandname + "&method=3&id=0";
   fetch(urlBandId)
