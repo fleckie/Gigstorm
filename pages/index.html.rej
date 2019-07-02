@@ -1,0 +1,10 @@
+diff a/pages/index.html b/pages/index.html	(rejected hunks)
+@@ -59,8 +59,6 @@
+         </button>
+ 
+         <div class="collapse navbar-collapse" id="navbarResponsive">
+-            <input id="pubInput" class="searchbarPub" type="text" placeholder="Search for a pub..." autocomplete="off">
+-            <a id="pubSearch" class="btn-search-pub" onclick="goSearchPub()"><i class="fa fa-search" style=color:whitesmoke> </i> </a>
+           <ul class="navbar-nav ml-auto">
+             <li class="nav-item">
+               <a class="nav-link js-scroll-trigger" href="#pubs">
