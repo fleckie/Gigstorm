@@ -21,20 +21,13 @@ span.onclick = function() {
 // search bar function - stores Input in Web Storage
 
 function goSearchBand() {
-  
+  bandInput = document.getElementById("bandInput").value;
 
-  if (document.getElementById("bandInput").value != ""){
-    if (typeof Storage !== "undefined") {
-      localStorage.setItem("band", document.getElementById("bandInput").value);
-      window.location.href="../pages/band_search.html";
-    } else {
-      alert("Storage not activated");
+  if (bandInput != ""){
+      //document.cookie="bandMode=search";
+      document.cookie="band=" + bandInput;
+      window.location.href="../pages/band.html";
     }
-    
-  }
-  else {
-    
-  }
 }
 
 function goSearchPub() {

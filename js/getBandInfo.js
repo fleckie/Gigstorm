@@ -1,7 +1,7 @@
-
 window.onload = loadContent();
 
 function loadContent(){
+  
   bandname = getCookie("band");
   var urlBandId = "http://localhost:8081/php/lastFmApi.php?searchterm=" + bandname + "&method=3&id=0";
   fetch(urlBandId)
@@ -78,7 +78,7 @@ function loadContent(){
     //document.getElementById("tags").innerHTML = tags;
     document.getElementById("ontour").innerHTML = ontour ? "On Tour" : "Not On Tour";
     document.getElementById("ontour").style.backgroundColor = ontour ? "green" : "red";
-    document.getElementById("ontour").style.animation = "swing-in 1s linear both 1s";
+    document.getElementById("ontour").style.animation = "swing-in 1s linear both";
     //let related1 = data.artist.similar.artist[0].name; related page stub
   })
   .catch(function(error){
@@ -118,6 +118,7 @@ function loadContent(){
     console.log("Request failed", error)
   })
 }
+
 function createEventTable(events){
   var eventsArray = events.map( event =>{
     var eventObject = {date: event.start.date, venue: event.venue.displayName, location: event.location.city}
@@ -149,23 +150,6 @@ function generateTable(table, data) {
   }
 }
 
-function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-
 // album swiper for top albums
 $.getScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js', function()
 {
@@ -193,80 +177,19 @@ $.getScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.j
   });
 });
 
-function goSearchBand() {
-  
 
-  if (document.getElementById("bandInput").value != ""){
-    if (typeof Storage !== "undefined") {
-      localStorage.setItem("band", document.getElementById("bandInput").value);
-      window.location.href="../pages/band_search.html";
-    } else {
-      alert("Storage not activated");
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
     }
-    
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
   }
-  else {
-    
-  }
+  return "";
 }
-
-function goSearchPub() {
-  if(document.getElementById("pubInput").value != ""){
-    if (typeof Storage !== "undefined") {
-      localStorage.setItem("pub", document.getElementById("pubInput").value);
-      window.location.href="../pages/pub_search.html";
-    } else {
-      alert("Storage not activated");
-    }
-  }
-    else {
-    
-    }
-}
-
-var inputBand = document.getElementById("bandInput");
-console.log(inputBand);
-inputBand.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("bandSearch").click();
-  }
-});
-
-
-var inputPub = document.getElementById("pubInput");
-inputPub.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("pubSearch").click();
-  }
-});
-
-(function() {
-  var isBootstrapEvent = false;
-  if (window.jQuery) {
-      var all = jQuery('*');
-      jQuery.each(['hide.bs.dropdown', 
-          'hide.bs.collapse', 
-          'hide.bs.modal', 
-          'hide.bs.tooltip',
-          'hide.bs.popover'], function(index, eventName) {
-          all.on(eventName, function( event ) {
-              isBootstrapEvent = true;
-          });
-      });
-  }
-  var originalHide = Element.hide;
-  Element.addMethods({
-      hide: function(element) {
-          if(isBootstrapEvent) {
-              isBootstrapEvent = false;
-              return element;
-          }
-          return originalHide(element);
-      }
-  });
-})();
-
-
-    
