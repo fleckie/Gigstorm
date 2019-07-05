@@ -17,7 +17,6 @@ if($loggedIn){
     session_start();
     $_SESSION["username"] = $_POST['uname'];
     $_SESSION["bandname"] = $_POST['bname'];
-    //setcookie("bandMode", "profile", time() + (86400 * 30), "/");
     setcookie("band", $_POST['uname'], time() + (86400 * 30), "/pages/");
     echo "
     <script>
